@@ -5,23 +5,26 @@ import br.com.psouza.domain.Persistent;
 import java.util.List;
 import java.util.Collection;
 import java.io.Serializable;
-import javax.persistence.Persistence;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+
+@ApplicationScoped
 public abstract class GenericDAO<T extends Persistent, ID extends Serializable> implements IGenericDAO<T, ID> {
 
     protected EntityManagerFactory entityManagerFactory;
 
     protected EntityManager entityManager;
 
+    private Class<T> persistentClass;
+
     private String persistenceUnitName = "postgres";
 
-    private final Class<T> persistentClass;
 
-    public GenericDAO(Class<T> persistentClass, String persistenceUnitName) {
+    public GenericDAO(Class<T> persistentClass) {
         this.persistentClass = persistentClass;
-        this.persistenceUnitName = persistenceUnitName;
     }
 
     @Override
@@ -70,7 +73,6 @@ public abstract class GenericDAO<T extends Persistent, ID extends Serializable> 
     }
 
     protected void openConnection() {
-        System.out.println("Persistence Unit Name: " + getPersistenceUnitName());
         entityManagerFactory =
                 Persistence.createEntityManagerFactory(getPersistenceUnitName());
         entityManager = entityManagerFactory.createEntityManager();

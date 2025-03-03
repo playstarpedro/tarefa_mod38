@@ -1,10 +1,11 @@
 package br.com.psouza;
 
-import br.com.psouza.dao.ClientDAO;
-import br.com.psouza.domain.Client;
-import br.com.psouza.dao.IGenericDAO;
-import br.com.psouza.domain.Persistent;
 
+
+import br.com.psouza.dao.ClientDAO;
+import br.com.psouza.dao.IGenericDAO;
+import br.com.psouza.domain.Client;
+import br.com.psouza.domain.Persistent;
 import org.junit.*;
 
 import java.sql.Connection;
@@ -18,6 +19,8 @@ public class ClientTest {
         String url = "jdbc:postgresql://localhost:5432/postgres";
         String user = "postgres";
         String password = "0079";
+        System.out.println(Thread.currentThread().getContextClassLoader().getResource("META-INF/persistence.xml"));
+
 
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
             if (conn != null) {
@@ -33,7 +36,7 @@ public class ClientTest {
     private IGenericDAO clientDAO;
 
     public ClientTest() {
-        this.clientDAO = new ClientDAO(Client.class, "postgres");
+        this.clientDAO = new ClientDAO();
     }
 
     @After

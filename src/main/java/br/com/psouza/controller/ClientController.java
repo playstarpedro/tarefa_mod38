@@ -1,27 +1,19 @@
 package br.com.psouza.controller;
 
+import br.com.psouza.dao.ClientDAO;
 import br.com.psouza.domain.Client;
-
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
-import java.io.Serializable;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @Named
-@SessionScoped
-public class ClienteController extends GenericController<Client> implements Serializable {
+@RequestScoped
+public class ClientController {
 
-    @Override
-    protected Client createNewEntity() {
-        return new Client(); // Cria uma nova instância de Client
-    }
+    @Inject
+    private ClientDAO clientDAO;
 
-    @Override
-    public String addElement() {
-        // Salva o cliente no banco de dados
-        this.genericDAO.register(this.getElement());
-        // Limpa o formulário
-        this.setElement(createNewEntity());
-        // Redireciona para a lista de clientes
-        return "client-list.xhtml?faces-redirect=true";
+    public void registrarCliente(Client client) {
+        clientDAO.register(client);
     }
 }

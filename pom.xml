@@ -25,13 +25,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JPA API -->
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>javax.persistence-api</artifactId>
-            <version>2.2</version>
-        </dependency>
-
         <!-- PostgreSQL Driver -->
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -39,14 +32,29 @@
             <version>42.7.5</version>
         </dependency>
 
-        <!-- Hibernate EntityManager (Implementação JPA) -->
+        <!-- Hibernate ORM -->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.6.15.Final</version>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.4.1.Final</version>
         </dependency>
 
-        <!-- JSF (JavaServer Faces) -->
+        <!-- JSON Binding -->
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>yasson</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+
+        <!-- Jakarta EE 9 API (Inclui JPA, CDI, Bean Validation, etc.) -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>9.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Jakarta Faces (JSF) -->
         <dependency>
             <groupId>jakarta.faces</groupId>
             <artifactId>jakarta.faces-api</artifactId>
@@ -54,35 +62,19 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+        <!-- Jakarta Servlet -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
             <version>6.1.0</version>
             <scope>provided</scope>
         </dependency>
-
-
-        <!-- CDI API (Contexts and Dependency Injection) -->
-        <dependency>
-            <groupId>javax.enterprise</groupId>
-            <artifactId>cdi-api</artifactId>
-            <version>2.0.SP1</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Bean Validation API -->
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>2.0.1.Final</version>
-        </dependency>
     </dependencies>
 
     <build>
         <finalName>ProjectMod38</finalName>
         <plugins>
-            <!-- Plugin para compilar o projeto com Java 17 -->
+            <!-- Plugin para compilar com Java 17 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

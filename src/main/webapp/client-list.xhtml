@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
     <title>Lista de Clientes</title>
 </head>
 <body>
 <h1>Lista de Clientes</h1>
-<h:dataTable value="#{clienteController.elements}" var="cliente">
+<h:dataTable value="#{clienteController.elements}" var="client">
     <h:column>
         <f:facet name="header">Nome</f:facet>
-        #{cliente.nome}
+        #{client.name}
     </h:column>
     <h:column>
-        <f:facet name="header">Email</f:facet>
-        #{cliente.email}
+        <f:facet name="header">CPF</f:facet>
+        #{client.cpf}
     </h:column>
     <h:column>
         <f:facet name="header">Telefone</f:facet>
-        #{cliente.telefone}
+        #{client.tel}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Endereço</f:facet>
+        #{client.address}, #{client.addressNumber}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Cidade</f:facet>
+        #{client.city}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Estado</f:facet>
+        #{client.state}
     </h:column>
     <h:column>
         <f:facet name="header">Ações</f:facet>
-        <h:commandLink value="Editar" action="editar-cliente.xhtml?faces-redirect=true&amp;id=#{cliente.id}" />
-        <h:commandLink value="Excluir" action="#{clienteController.excluirCliente(cliente)}" />
+        <h:commandLink value="Editar" action="#{clienteController.editElement(client)}" />
+        <h:commandLink value="Excluir" action="#{clienteController.deleteElement(client)}" />
     </h:column>
 </h:dataTable>
 
-<h:link value="Voltar ao Cadastro" outcome="cadastro-cliente" />
+<h:link value="Voltar ao Cadastro" outcome="client-register" />
 </body>
 </html>

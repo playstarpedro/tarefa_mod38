@@ -2,7 +2,7 @@ package br.com.psouza.domain;
 
 import br.com.psouza.domain.enums.Status;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Objects;

@@ -26,7 +26,7 @@ public class SaleTest {
 
     public SaleTest() {
         this.saleDAO = new SaleDAO(Sale.class, "postgres");
-        this.clientDAO = new ClientDAO(Client.class, "postgres");
+        this.clientDAO = new ClientDAO();
     }
 
     @After

@@ -1,7 +1,7 @@
 package br.com.psouza.domain;
 
 import java.util.Objects;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "TB_CLIENT")

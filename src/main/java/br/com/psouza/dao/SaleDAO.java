@@ -4,6 +4,6 @@ import br.com.psouza.domain.Sale;
 
 public class SaleDAO extends GenericDAO<Sale, Long>{
     public SaleDAO(Class<Sale> persistentClass, String persistenceUnitName) {
-        super(persistentClass, persistenceUnitName);
+        super(Sale.class);
     }
 }
