@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-<head>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
     <title>Cadastro de Clientes</title>
-</head>
-<body>
-<h1>Cadastro de Clientes</h1>
-<h:form>
-    <h:panelGrid columns="2">
-        <h:outputLabel value="Nome:" />
-        <h:inputText value="#{clientController.element.name}" required="true" />
+</h:head>
+<h:body>
+    <h:form>
+        <p:panel header="Cadastro de Clientes">
+            <p:messages id="messages" showDetail="true" closable="true" />
 
-        <h:outputLabel value="CPF:" />
-        <h:inputText value="#{clientController.element.cpf}" required="true" />
+            <p:panelGrid columns="2" styleClass="ui-grid-responsive">
+                <p:outputLabel for="name" value="Nome:" />
+                <p:inputText id="name" value="#{clientController.element.name}" required="true" />
 
-        <h:outputLabel value="Telefone:" />
-        <h:inputText value="#{clientController.element.tel}" required="true" />
+                <p:outputLabel for="cpf" value="CPF:" />
+                <p:inputMask id="cpf" value="#{clientController.element.cpf}" mask="999.999.999-99" required="true" />
 
-        <h:outputLabel value="Endereço:" />
-        <h:inputText value="#{clientController.element.address}" required="true" />
+                <p:outputLabel for="tel" value="Telefone:" />
+                <p:inputMask id="tel" value="#{clientController.element.tel}" mask="(99) 99999-9999" required="true" />
 
-        <h:outputLabel value="Número:" />
-        <h:inputText value="#{clientController.element.addressNumber}" required="true" />
+                <p:outputLabel for="address" value="Endereço:" />
+                <p:inputText id="address" value="#{clientController.element.address}" required="true" />
 
-        <h:outputLabel value="Cidade:" />
-        <h:inputText value="#{clientController.element.city}" required="true" />
+                <p:outputLabel for="addressNumber" value="Número:" />
+                <p:inputText id="addressNumber" value="#{clientController.element.addressNumber}" required="true" />
 
-        <h:outputLabel value="Estado:" />
-        <h:inputText value="#{clientController.element.state}" required="true" />
-    </h:panelGrid>
+                <p:outputLabel for="city" value="Cidade:" />
+                <p:inputText id="city" value="#{clientController.element.city}" required="true" />
 
-    <h:commandButton value="Cadastrar" action="#{clientController.addElement}" />
-</h:form>
+                <p:outputLabel for="state" value="Estado:" />
+                <p:inputText id="state" value="#{clientController.element.state}" required="true" />
+            </p:panelGrid>
 
-<h:link value="Ver Lista de Clientes" outcome="client-list"/>
-</body>
+            <p:commandButton value="Cadastrar" action="#{clientController.addElement}" update="@form" style="margin-top: 10px;" />
+        </p:panel>
+
+        <p:link value="Ver Lista de Clientes" outcome="client-list" style="margin-top: 10px; display: block;" />
+    </h:form>
+</h:body>
 </html>

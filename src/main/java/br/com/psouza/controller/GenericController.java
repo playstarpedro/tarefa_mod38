@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Named
 @RequestScoped
 public abstract class GenericController<T extends Persistent<ID>, E extends GenericDAO<T, ID>, ID extends Serializable> implements IController<T> {
+//TODO: make returned url's dynamic according to the Persist class passed!
     @Inject
     protected E dao;
 
