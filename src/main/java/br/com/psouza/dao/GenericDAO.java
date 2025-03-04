@@ -64,7 +64,7 @@ public abstract class GenericDAO<T extends Persistent, ID extends Serializable> 
     }
 
     @Override
-    public Collection searchAll() {
+    public List<T> searchAll() {
         openConnection();
         List<T> list =
                 entityManager.createQuery(getSelectSql(), this.persistentClass).getResultList();

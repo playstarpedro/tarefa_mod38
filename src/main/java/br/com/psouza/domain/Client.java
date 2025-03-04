@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "TB_CLIENT")
-public class Client implements Persistent {
+public class Client implements Persistent<Long> {
 
     @Id
     @SequenceGenerator(name = "client_seq", sequenceName = "sq_client", initialValue = 1, allocationSize = 1)

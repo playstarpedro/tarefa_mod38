@@ -4,6 +4,7 @@ import br.com.psouza.domain.Persistent;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 public interface IGenericDAO <T extends Persistent, E extends Serializable> {
     public T register(T entity);
@@ -14,5 +15,5 @@ public interface IGenericDAO <T extends Persistent, E extends Serializable> {
 
     public T consult(E id);
 
-    public Collection<T> searchAll();
+    public List<T> searchAll();
 }

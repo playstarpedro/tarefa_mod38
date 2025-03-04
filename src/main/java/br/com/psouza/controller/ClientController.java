@@ -1,19 +1,24 @@
 package br.com.psouza.controller;
 
+import jakarta.inject.Named;
+import jakarta.inject.Inject;
 import br.com.psouza.dao.ClientDAO;
 import br.com.psouza.domain.Client;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+
+import java.io.Serializable;
 
 @Named
-@RequestScoped
-public class ClientController {
+@ViewScoped
+public class ClientController extends GenericController<Client, ClientDAO, Long> implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Inject
     private ClientDAO clientDAO;
 
-    public void registrarCliente(Client client) {
-        clientDAO.register(client);
+    @Override
+    protected Client createNewEntity() {
+        return new Client();
     }
+
 }

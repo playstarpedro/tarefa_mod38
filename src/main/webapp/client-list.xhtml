@@ -7,38 +7,41 @@
 </head>
 <body>
 <h1>Lista de Clientes</h1>
-<h:dataTable value="#{clienteController.elements}" var="client">
-    <h:column>
-        <f:facet name="header">Nome</f:facet>
-        #{client.name}
-    </h:column>
-    <h:column>
-        <f:facet name="header">CPF</f:facet>
-        #{client.cpf}
-    </h:column>
-    <h:column>
-        <f:facet name="header">Telefone</f:facet>
-        #{client.tel}
-    </h:column>
-    <h:column>
-        <f:facet name="header">Endereço</f:facet>
-        #{client.address}, #{client.addressNumber}
-    </h:column>
-    <h:column>
-        <f:facet name="header">Cidade</f:facet>
-        #{client.city}
-    </h:column>
-    <h:column>
-        <f:facet name="header">Estado</f:facet>
-        #{client.state}
-    </h:column>
-    <h:column>
-        <f:facet name="header">Ações</f:facet>
-        <h:commandLink value="Editar" action="#{clienteController.editElement(client)}" />
-        <h:commandLink value="Excluir" action="#{clienteController.deleteElement(client)}" />
-    </h:column>
-</h:dataTable>
+<h:form>
+    <h:dataTable value="#{clientController.elements}" var="client">
+        <h:column>
+            <f:facet name="header">Nome</f:facet>
+            #{client.name}
+        </h:column>
+        <h:column>
+            <f:facet name="header">CPF</f:facet>
+            #{client.cpf}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Telefone</f:facet>
+            #{client.tel}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Endereço</f:facet>
+            #{client.address}, #{client.addressNumber}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Cidade</f:facet>
+            #{client.city}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Estado</f:facet>
+            #{client.state}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Ações</f:facet>
+            <h:commandLink value="Excluir" action="#{clientController.deleteElement(client)}">
+                <f:param name="clientId" value="#{client.id}" />
+            </h:commandLink>
+        </h:column>
+    </h:dataTable>
+</h:form>
 
-<h:link value="Voltar ao Cadastro" outcome="client-register" />
+<h:link value="Cadastrar" outcome="client-register" />
 </body>
 </html>

@@ -3,24 +3,27 @@ package br.com.psouza.controller;
 import br.com.psouza.dao.GenericDAO;
 import br.com.psouza.domain.Persistent;
 
+import jakarta.inject.Named;
 import jakarta.inject.Inject;
-import java.io.Serializable;
-import java.util.Collection;
+import jakarta.enterprise.context.RequestScoped;
+
 import java.util.List;
+import java.io.Serializable;
 
-public abstract class GenericController<T extends Persistent> implements IController<T>, Serializable {
-
+@Named
+@RequestScoped
+public abstract class GenericController<T extends Persistent<ID>, E extends GenericDAO<T, ID>, ID extends Serializable> implements IController<T> {
     @Inject
-    protected GenericDAO genericDAO;
+    protected E dao;
 
-    private T element;
-    private Collection elements;
+    protected T element;
+    protected List<T> elements = null;
 
     protected abstract T createNewEntity();
 
     @Override
     public String addElement() {
-        genericDAO.register(this.getElement());
+        dao.register(this.getElement());
         this.setElement(createNewEntity());
         return "client-list.xhtml?faces-redirect=true";
     }
@@ -39,9 +42,9 @@ public abstract class GenericController<T extends Persistent> implements IContro
     }
 
     @Override
-    public Collection getElements() {
+    public List<T> getElements() {
         if (elements == null) {
-            elements = genericDAO.searchAll();
+            elements = dao.searchAll();
         }
         return elements;
     }
@@ -53,14 +56,10 @@ public abstract class GenericController<T extends Persistent> implements IContro
 
     @Override
     public String deleteElement(T element) {
-        genericDAO.delete(element);
-        elements = genericDAO.searchAll();
+        dao.delete(element);
+        elements = dao.searchAll();
         return "client-list.xhtml?faces-redirect=true";
     }
 
-    @Override
-    public String editElement(T element) {
-        this.setElement(element);
-        return "client-edit.xhtml?faces-redirect=true&id=" + element.getId();
-    }
+    // I HATE RODRIGO PIRES
 }

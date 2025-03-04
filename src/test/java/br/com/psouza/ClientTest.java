@@ -1,37 +1,35 @@
 package br.com.psouza;
 
-
-
-import br.com.psouza.dao.ClientDAO;
-import br.com.psouza.dao.IGenericDAO;
-import br.com.psouza.domain.Client;
-import br.com.psouza.domain.Persistent;
 import org.junit.*;
+import br.com.psouza.dao.ClientDAO;
+import br.com.psouza.domain.Client;
+import br.com.psouza.dao.IGenericDAO;
+import br.com.psouza.domain.Persistent;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.List;
+import java.sql.Connection;
 import java.util.Collection;
+import java.sql.SQLException;
+import java.sql.DriverManager;
 
 public class ClientTest {
-    public static void main(String[] args) {
-        String url = "jdbc:postgresql://localhost:5432/postgres";
-        String user = "postgres";
-        String password = "0079";
-        System.out.println(Thread.currentThread().getContextClassLoader().getResource("META-INF/persistence.xml"));
-
-
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
-            if (conn != null) {
-                System.out.println("Conexão bem-sucedida! 🎉");
-            } else {
-                System.out.println("Falha na conexão.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) {
+//        String url = "jdbc:postgresql://localhost:5432/postgres";
+//        String user = "postgres";
+//        String password = "0079";
+//        System.out.println(Thread.currentThread().getContextClassLoader().getResource("META-INF/persistence.xml"));
+//
+//
+//        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+//            if (conn != null) {
+//                System.out.println("Conexão bem-sucedida! 🎉");
+//            } else {
+//                System.out.println("Falha na conexão.");
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private IGenericDAO clientDAO;
 
@@ -79,8 +77,8 @@ public class ClientTest {
 
         List<Client> clients = (List<Client>) clientDAO.searchAll();
         Assert.assertNotNull(clients);
-        Assert.assertEquals(clients.get(0).getCpf(), registeredClient1.getCpf());
-        Assert.assertEquals(clients.get(1).getCpf(), registeredClient2.getCpf());
+        Assert.assertTrue(clients.contains(registeredClient1));
+        Assert.assertTrue(clients.contains(registeredClient2));
     }
 
     @Test

@@ -1,6 +1,8 @@
 package br.com.psouza.domain;
 
-public interface Persistent {
+import java.io.Serializable;
+
+public interface Persistent<ID extends Serializable> {
 
     public Long getId();
 
